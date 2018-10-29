@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class DBConnectionTest {
 
     @Test
@@ -14,5 +16,15 @@ public class DBConnectionTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void ShouldCreatePoolConnection(){
+        try {
+            ConnectionPool connectionPool = BasicConnectionPool.create("jdbc:postgresql://localhost:5432/books_library","postgres","postgres");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Connection established");
     }
 }

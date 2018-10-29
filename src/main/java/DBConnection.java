@@ -3,9 +3,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private String url;
-    private String user;
-    private String password;
+    private static String url;
+    private static String user;
+    private static String password;
 
     public DBConnection(String url, String user, String password) {
         this.url = url;
@@ -13,7 +13,7 @@ public class DBConnection {
         this.password = password;
     }
 
-    public static Connection createConnection(String url, String user, String password)throws SQLException {
+    public static Connection createConnection()throws SQLException {
         return DriverManager.getConnection(url,user,password);
     }
 }
