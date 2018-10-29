@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-class ConnectionPoolLimitExceeded extends Exception{
-    ConnectionPoolLimitExceeded(){
+class ConnectionPoolLimitExceeded extends Exception {
+    ConnectionPoolLimitExceeded() {
         super("Connection pool limit exceeded, cannot give connections");
     }
 }
 
-public class BasicConnectionPool implements ConnectionPool{
+public class BasicConnectionPool implements ConnectionPool {
 
     private String url;
     private String user;
@@ -38,13 +37,13 @@ public class BasicConnectionPool implements ConnectionPool{
         }
         return new BasicConnectionPool(url, user, password, pool);
     }
+
     @Override
-    public Connection getConnection()throws SQLException, ConnectionPoolLimitExceeded{
-        if(connectionPool.isEmpty()){
-            if(usedConnections.size()<POOL_SIZE){
-                    connectionPool.add(createDBConnection(url,user,password));
-            }
-            else {
+    public Connection getConnection() throws SQLException, ConnectionPoolLimitExceeded {
+        if (connectionPool.isEmpty()) {
+            if (usedConnections.size() < POOL_SIZE) {
+                connectionPool.add(createDBConnection(url, user, password));
+            } else {
                 throw new ConnectionPoolLimitExceeded();
             }
         }
@@ -62,7 +61,7 @@ public class BasicConnectionPool implements ConnectionPool{
 
     private static Connection createDBConnection(String url, String user, String password) throws SQLException {
 
-        DBConnection dbConnection = new DBConnection(url,user,password);
+        DBConnection dbConnection = new DBConnection(url, user, password);
         return dbConnection.createConnection();
     }
 

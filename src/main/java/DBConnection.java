@@ -13,7 +13,7 @@ public class DBConnection {
         this.password = password;
     }
 
-    public static Connection createConnection()throws SQLException {
-        return DriverManager.getConnection(url,user,password);
+    public static Connection createConnection() throws SQLException {
+        return DriverManager.getConnection(url, user, password);
     }
 }
